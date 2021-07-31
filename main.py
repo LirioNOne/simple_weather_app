@@ -1,6 +1,6 @@
 import sys
 
-from PyQt5.QtWidgets import QMainWindow, QApplication
+from PyQt5.QtWidgets import QMainWindow, QApplication, QLabel
 import requests
 
 from main_window import Ui_MainWindow
@@ -22,6 +22,8 @@ class Weather_app(QMainWindow, Ui_MainWindow):
 
     def get_city_weather(self):
         city_name = self.lineEdit.text()
+        city_text = 'in ' + city_name + ':' + '\n'
+
         lang = "en"
         units = "metric"
         query = {
@@ -44,6 +46,7 @@ class Weather_app(QMainWindow, Ui_MainWindow):
             visibility = result['visibility']
 
             out = ""
+            out += city_text
             out += str(description) + '\n'
             out += 'Temperature: ' + str(temperature) + '°C' + '\n'
             out += 'Feels like: ' + str(feel_like) + '°C' + '\n'
